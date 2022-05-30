@@ -10,7 +10,7 @@ function NavBarComp() {
         <Container className='justify-content-center'>
           <Navbar.Brand >NavBar:</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href='/' >Game</Nav.Link>
+            <Nav.Link href='/'>Game</Nav.Link>
             <Nav.Link href='/about'>About</Nav.Link>
             <Nav.Link href='/wotd' >Word of the Day</Nav.Link>
           </Nav>
