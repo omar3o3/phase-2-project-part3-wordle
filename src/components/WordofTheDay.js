@@ -22,6 +22,10 @@ function WordofTheDay() {
   setDefinition(data[0].meanings[0].definitions[0].definition)
   }
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
 return (
   <div className='text-center'>
     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -33,9 +37,9 @@ return (
     </div>
     <h3 className = 'text-capitalize display-5 mb-5 text-decoration-underline' >{wordState}</h3>
     <p className='lead fs-3'>Definition: {definitonState}</p>
+    <button className='btn btn-outline-dark btn-lg' onClick={refreshPage}>Get a new Word!</button>
   </div>
 )
 }
 
-//style={{height:1 , border: 'none' , color: 'black' , backgroundColor: 'black'}}
 export default WordofTheDay
