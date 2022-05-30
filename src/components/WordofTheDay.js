@@ -6,21 +6,13 @@ function WordofTheDay() {
   // console.log(randomWords());
 
   const definitionFetch = () =>{
-    // fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello')
-    // fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${randomWord}`)
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${randomWords()}`)
     .then(resp => resp.json())
-    // .then(data => console.log(data))
     .then(data => breakDownDef(data))
   }
 
   definitionFetch();
   const breakDownDef = (data) =>{
-    // console.log(data.meanings.definitions)
-    // console.log(data.meanings[1]);
-    // console.log(data.word)
-    //to get all meanings
-    // console.log(data[0].meanings)
     // to get one of the meanings
     // console.log(data[0].meanings[0].definitions[0].definition)
     // console.log(data[0].meanings[1].definitions[0].definition)
