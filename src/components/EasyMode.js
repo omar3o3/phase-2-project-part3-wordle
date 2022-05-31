@@ -2,135 +2,135 @@ import React, { useState, useEffect } from 'react'
 
 function EasyMode() {
 
-  const [guessValue, setGuessValue] = useState('')
-  const [previousGuesses , setPreviousGuesses] = useState([])
+  let randomWords = require('random-words');
+  const [wordState, setWordState] = useState(randomWords())
+
+  const [turnValue, setCurrentTurn] = useState(0);
+
+  const [guessState, setGuesses] = useState({
+    0: '',
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+  })
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp)
 
     return () => window.removeEventListener('keyup', handleKeyUp)
-  }, [guessValue])
+  }, [guessState])
 
 
   const handleKeyUp = ({ key }) => {
     if (/^[A-Za-z]$/.test(key)) {
-      if (guessValue.length < 5) {
-        setGuessValue(prev => prev + key)
+      if (guessState[turnValue].length < 5) {
+        setGuesses({ ...guessState, [turnValue]: guessState[turnValue] + key })
       }
     }
 
     if (key === 'Backspace'){
-      setGuessValue(prev => prev = prev.slice(0, -1))
+      setGuesses({ ...guessState, [turnValue]: guessState[turnValue].slice(0 , -1)})
     }
 
-    if(key === 'Enter' && guessValue.length === 5){
-      setPreviousGuesses(prev => [...prev , guessValue])
+    if(key === 'Enter' && guessState[turnValue].length === 5){
+      setCurrentTurn(turnValue + 1)
+      setGuesses({ ...guessState})
     }
 
   }
-
-
-
-  
-  if (guessValue !== '') {
-    console.log(guessValue);
-  }
-
-  if(previousGuesses.length > 0){
-    console.log(previousGuesses);
-  }
-
 
   return (
     <div className='container'>
 
       <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark bg-warning" style={{height: '3.5rem'}}>
-          {guessValue[0] ? guessValue[0] : ''}
+        <div className="col border border-dark bg-warning" style={{ height: '3.5rem' }}>
+          {guessState[0][0] ? guessState[0][0] : ''}
         </div>
-        <div className="col border border-dark bg-success" style={{height: '3.5rem'}}>
-        {guessValue[1]  ? guessValue[1] : ''}
+        <div className="col border border-dark bg-success" style={{ height: '3.5rem' }}>
+          {guessState[0][1] ? guessState[0][1] : ''}
         </div>
-        <div className="col border border-dark bg-secondary" style={{height: '3.5rem'}}>
-        {guessValue[2]  ? guessValue[2] : ''}
+        <div className="col border border-dark bg-secondary" style={{ height: '3.5rem' }}>
+          {guessState[0][2] ? guessState[0][2] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-        {guessValue[3]  ? guessValue[3] : ''}
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[0][3] ? guessState[0][3] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-        {guessValue[4]  ? guessValue[4] : ''}
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[0][4] ? guessState[0][4] : ''}
         </div>
       </div>
 
       <div className="row align-items-start m-5 display-5 text-center">
-      <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[1][0] ? guessState[1][0] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[1][1] ? guessState[1][1] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[1][2] ? guessState[1][2] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[1][3] ? guessState[1][3] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-      <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
-        </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[1][4] ? guessState[1][4] : ''}
         </div>
       </div>
 
       <div className="row align-items-start m-5 display-5 text-center">
-      <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[2][0] ? guessState[2][0] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[2][1] ? guessState[2][1] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[2][2] ? guessState[2][2] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[2][3] ? guessState[2][3] : ''}
         </div>
-        <div className="col border border-dark" style={{height: '3.5rem'}}>
-          
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[2][4] ? guessState[2][4] : ''}
+        </div>
+      </div>
+
+      <div className="row align-items-start m-5 display-5 text-center">
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[3][0] ? guessState[3][0] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[3][1] ? guessState[3][1] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[3][2] ? guessState[3][2] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[3][3] ? guessState[3][3] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[3][4] ? guessState[3][4] : ''}
+        </div>
+      </div>
+
+      <div className="row align-items-start m-5 display-5 text-center">
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[4][0] ? guessState[4][0] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[4][1] ? guessState[4][1] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[4][2] ? guessState[4][2] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[4][3] ? guessState[4][3] : ''}
+        </div>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
+          {guessState[4][4] ? guessState[4][4] : ''}
         </div>
       </div>
 
