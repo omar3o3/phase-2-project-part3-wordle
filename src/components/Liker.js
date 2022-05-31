@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Comment from './Comment';
 import uuid from 'react-uuid'; //random ID generator
 import { feedbackComments, feedbackLikes } from '../data/feedback';
+import { NavLink } from 'react-bootstrap';
 
 function Liker() {
   const [likes, setLikes] = useState(feedbackLikes.likes);
@@ -25,8 +26,6 @@ function Liker() {
       name: newName,
       comment: newComment
     };
-    //fetch API here?
-
     //render new state, appends comment on page
     setCommentsArr([...commentsArr, addComment]);
     //reset input fields
@@ -34,11 +33,14 @@ function Liker() {
     setNewComment('');
   }
 
-  // ONLY IF DATA IS FROM API 
-  // function handleToggle() {
-  //   setToggle(!toggle);
-  //   setCommentsArr([]);
+  // const hidden = {
+  //   visibility: 'hidden',
   // }
+
+  function handleToggle() {
+    setToggle(!toggle);
+    // setCommentsArr([]);
+  }
 
   const renderComments =  commentsArr.map((comment) => <Comment key={uuid()} commentObj={comment}/>);
 
@@ -64,9 +66,8 @@ function Liker() {
         <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
       </form>
       <hr/>
-      <div>
-        {renderComments}
-      </div>
+      <button onClick={handleToggle}>{toggle ? "Hide Comments" : "Show Comments"}</button>
+      {toggle ? <div>{renderComments}</div> : null}
     </div>
   )
 }

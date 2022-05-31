@@ -5,7 +5,7 @@ function Comment({ commentObj }) {
 
     return (
         <div>
-            <p className='lead'>{comment} -{name}</p>
+            <p className='lead'>"{comment}" -{name}</p>
         </div>
     )
 }
