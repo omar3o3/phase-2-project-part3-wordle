@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Button from 'react-bootstrap/Button'
 
 function WordofTheDay() {
 
@@ -37,7 +38,7 @@ return (
     </div>
     <h3 className = 'text-capitalize display-5 mb-5 text-decoration-underline' >{wordState}</h3>
     <p className='lead fs-3'>Definition: {definitonState}</p>
-    <button className='btn btn-outline-dark btn-lg mb-5' onClick={refreshPage}>Get a new Word!</button>
+    <Button className='btn-lg mb-5' variant="outline-dark" onClick={refreshPage}>Get a new Word!</Button>
     <br />
     <br />
   </div>
