@@ -38,20 +38,19 @@ function EasyMode() {
       setCurrentTurn(turnValue + 1)
       setGuesses({ ...guessState})
     }
-
   }
 
   return (
     <div className='container'>
 
       <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark bg-warning" style={{ height: '3.5rem' }}>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
           {guessState[0][0] ? guessState[0][0] : ''}
         </div>
-        <div className="col border border-dark bg-success" style={{ height: '3.5rem' }}>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
           {guessState[0][1] ? guessState[0][1] : ''}
         </div>
-        <div className="col border border-dark bg-secondary" style={{ height: '3.5rem' }}>
+        <div className="col border border-dark" style={{ height: '3.5rem' }}>
           {guessState[0][2] ? guessState[0][2] : ''}
         </div>
         <div className="col border border-dark" style={{ height: '3.5rem' }}>
