@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Comment from './Comment';
 import uuid from 'react-uuid'; //random ID generator
 import { feedbackComments, feedbackLikes } from '../data/feedback';
-import { NavLink } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button'
 
 function Liker() {
   const [likes, setLikes] = useState(feedbackLikes.likes);
@@ -47,9 +47,9 @@ function Liker() {
   return (
     <div className='text-center'>
       <p className='display-6'>What did you think of the game?</p>
-      <button className='display-6 lead text-center' onClick={()=>setLikes(likes+1)}>👍&nbsp;{likes}</button>
+      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setLikes(likes+1)}>👍&nbsp;{likes}</Button>
       &nbsp;&nbsp;&nbsp;
-      <button className='display-6 lead text-center' onClick={()=>setDislikes(dislikes+1)}>👎&nbsp;{dislikes}</button>
+      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setDislikes(dislikes+1)}>👎&nbsp;{dislikes}</Button>
       <br /><br />
       <br /><br />
       <h3 className='text-center'>Comments</h3>
@@ -63,10 +63,10 @@ function Liker() {
         <br />
         <textarea name="comment" type="text" rows="4" cols="50" value={newComment} placeholder="Enter comment..." onChange={handleNewComment}></textarea>
         <br />
-        <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
+        <Button type="submit" value="Submit">Submit</Button>
       </form>
       <hr/>
-      <button onClick={handleToggle}>{toggle ? "Hide Comments" : "Show Comments"}</button>
+      <Button onClick={handleToggle} variant="outline-secondary">{toggle ? "Hide Comments" : "Show Comments"}</Button>
       {toggle ? <div>{renderComments}</div> : null}
     </div>
   )
