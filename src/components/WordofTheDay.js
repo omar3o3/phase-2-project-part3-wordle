@@ -18,7 +18,7 @@ function WordofTheDay() {
   // console.log(data[0].meanings[0].definitions[0].definition)
   // console.log(data[0].meanings[1].definitions[0].definition)
   // console.log(data[0].meanings[2].definitions[0].definition)
-
+  console.log(data);
   setDefinition(data[0].meanings[0].definitions[0].definition)
   }
 
