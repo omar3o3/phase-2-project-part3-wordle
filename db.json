@@ -1,15 +1,26 @@
 {
-    "about": [
-        {
-            "likes": 0,
-            "dislikes": 0,
-            "feedback": [
-                {
-                    "name": "James",
-                    "comment": "awesome game! I feel smarter =)"
-                }
-            ]
-        }
-    ]
+  "feedback": [
+    {
+      "id": 1,
+      "likes": 3,
+      "dislikes": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "name": "James",
+      "comment": "awesome game! I feel smarter =)"
+    },
+    {
+      "name": "adf",
+      "comment": "adf",
+      "id": 2
+    },
+    {
+      "name": "tom",
+      "comment": "cool stuff",
+      "id": 3
+    }
+  ]
 }
-

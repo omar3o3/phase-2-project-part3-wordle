@@ -1,16 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Comment from './Comment';
-import uuid from 'react-uuid'; //random ID generator
-import { feedbackComments, feedbackLikes } from '../data/feedback';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 function Liker() {
-  const [likes, setLikes] = useState(feedbackLikes.likes);
-  const [dislikes, setDislikes] = useState(feedbackLikes.dislikes);
-  const [commentsArr, setCommentsArr] = useState(feedbackComments);
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [commentsArr, setCommentsArr] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [newName, setNewName] = useState('');
   const [toggle, setToggle] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/feedback/1')
+    .then(r => r.json())
+    .then((data) => {
+      setLikes(data.likes);
+      setDislikes(data.dislikes);
+    })
+
+    fetch('http://localhost:4000/comments')
+    .then(r => r.json())
+    .then((data) => setCommentsArr(data) )
+  }, [])
+
+//  console.log(likes)
+  function handleClickLike() {
+    setLikes(likes => likes = ++likes)
+    
+    fetch('http://localhost:4000/feedback/1', {
+      method: 'PATCH',  
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: likes }),
+    })
+    .then(r => r.json())
+    .then((update) => {
+      console.log(update);
+    })
+  }
+
+  console.log(likes)
+
+  function handleClickDislike() {
+    setDislikes(dislikes+1);
+    fetch('http://localhost:4000/feedback/1', {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ dislikes: dislikes }),
+    })
+    .then(r => r.json())
+    .then((dislike) => {
+      console.log(dislike)
+    })
+  }
 
   function handleNewName(e) {
     setNewName(e.target.value);
@@ -26,9 +71,17 @@ function Liker() {
       name: newName,
       comment: newComment
     };
-    //render new state, appends comment on page
-    setCommentsArr([...commentsArr, addComment]);
-    //reset input fields
+
+    fetch('http://localhost:4000/comments', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(addComment),
+    })
+    .then(r => r.json())
+    .then(update => setCommentsArr([...commentsArr, update]))
+ 
     setNewName('');
     setNewComment('');
   }
@@ -39,17 +92,16 @@ function Liker() {
 
   function handleToggle() {
     setToggle(!toggle);
-    // setCommentsArr([]);
   }
 
-  const renderComments =  commentsArr.map((comment) => <Comment key={uuid()} commentObj={comment}/>);
+  const renderComments = commentsArr.map((comment) => <Comment key={comment.id} name={comment.name} comment={comment.comment}/>);
 
   return (
     <div className='text-center'>
       <p className='display-6'>What did you think of the game?</p>
-      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setLikes(likes+1)}>👍&nbsp;{likes}</Button>
+      <Button className='display-6 lead text-center' variant="outline-primary" onClick={handleClickLike}>👍&nbsp;{likes}</Button>
       &nbsp;&nbsp;&nbsp;
-      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setDislikes(dislikes+1)}>👎&nbsp;{dislikes}</Button>
+      <Button className='display-6 lead text-center' variant="outline-primary" onClick={handleClickDislike}>👎&nbsp;{dislikes}</Button>
       <br /><br />
       <br /><br />
       <h3 className='text-center'>Comments</h3>
