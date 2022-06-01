@@ -6,12 +6,14 @@ function EasyMode() {
   let randomWords = require('random-words');
   const [wordState, setWordState] = useState(randomWords());
   const [gameWon , setGameWon] = useState(false);
-  const [gameLost , setGameLost] = useState(false)
+  const [gameLost , setGameLost] = useState(false);
 
   const [turnValue, setCurrentTurn] = useState(0);
 
   const [currentGuess , setCurrentGuess] = useState('');
-  // const [oldGuesses , setOldGuesses] = useState(oldGuesses => [...oldGuesses , currentGuess]);
+  const [formatGuess , setFormatGuess] = useState('');
+
+  const [oldGuesses , setOldGuesses] = useState([]);
 
   useEffect(()=>{
     window.addEventListener('keyup', handleKeyUp);
@@ -27,8 +29,6 @@ function EasyMode() {
     return () => window.removeEventListener('keyup', handleKeyUp);
   },[currentGuess])
 
-  //, gameWon , turnValue
-
 
   const handleKeyUp = ({key}) =>{
 
@@ -39,15 +39,22 @@ function EasyMode() {
     }
 
     if (key === 'Enter' && currentGuess.length === 5){
-      setCurrentGuess(currentGuess)
+      setCurrentGuess(currentGuess);
+      setFormatGuess(currentGuess);
     }
   }
 
-  console.log(currentGuess);
+  // const breakDownGuess = (string) =>{
+  //   (string.map(letter =>{
+  //     return {key: letter , color: 'white'}
+  //   }))
+  // }
+
+  console.log(formatGuess);
 
   return (
     <div>
-      <Row />
+      <Row formatGuess = {formatGuess} oldGuesses = {oldGuesses}/>
     </div>
   )
 }
