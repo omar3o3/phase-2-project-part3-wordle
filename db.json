@@ -11,21 +11,6 @@
       "id": 1,
       "name": "James",
       "comment": "awesome game! I feel smarter =)"
-    },
-    {
-      "name": "adf",
-      "comment": "adf",
-      "id": 2
-    },
-    {
-      "name": "tom",
-      "comment": "cool stuff",
-      "id": 3
-    },
-    {
-      "name": "Omar",
-      "comment": "very very cool stuff",
-      "id": 4
     }
   ]
 }

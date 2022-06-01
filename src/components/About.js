@@ -3,6 +3,7 @@ import Liker from './Liker';
 
 
 function About() {
+
   return (
     <>
         <h1 className='display-6 lead text-center'>About</h1>
