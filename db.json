@@ -2,8 +2,8 @@
   "feedback": [
     {
       "id": 1,
-      "likes": 3,
-      "dislikes": 2
+      "likes": 10,
+      "dislikes": 0
     }
   ],
   "comments": [
@@ -21,6 +21,11 @@
       "name": "tom",
       "comment": "cool stuff",
       "id": 3
+    },
+    {
+      "name": "Omar",
+      "comment": "very very cool stuff",
+      "id": 4
     }
   ]
 }

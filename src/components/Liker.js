@@ -25,14 +25,14 @@ function Liker() {
 
 //  console.log(likes)
   function handleClickLike() {
-    setLikes(likes => likes = ++likes)
-    
+    setLikes(likes+1)
+
     fetch('http://localhost:4000/feedback/1', {
       method: 'PATCH',  
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ likes: likes }),
+      body: JSON.stringify({ likes: likes+1 }),
     })
     .then(r => r.json())
     .then((update) => {
@@ -40,7 +40,6 @@ function Liker() {
     })
   }
 
-  console.log(likes)
 
   function handleClickDislike() {
     setDislikes(dislikes+1);
@@ -49,7 +48,7 @@ function Liker() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ dislikes: dislikes }),
+      body: JSON.stringify({ dislikes: dislikes+1 }),
     })
     .then(r => r.json())
     .then((dislike) => {
