@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react'
 function EasyMode() {
 
   let randomWords = require('random-words');
-  const [wordState, setWordState] = useState(randomWords())
+  const [wordState, setWordState] = useState(randomWords({exactly: 20 ,  maxLength: 6}))
+
+  let solutionFind = wordState.find(word => word.length === 5)
 
   const [turnValue, setCurrentTurn] = useState(0);
 
