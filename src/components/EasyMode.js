@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import Input from './Input';
 //omar was here
 
 function EasyMode() {
 
   let randomWords = require('random-words');
-  const [wordState, setWordState] = useState(randomWords({exactly: 20 ,  maxLength: 6}))
+  const [wordState, setWordState] = useState(randomWords({exactly: 20 ,  maxLength: 6}));
+  // const [colorState , setColor] = useState('yellow');
 
-  let solutionFind = wordState.find(word => word.length === 5)
-
+  let solutionFind = wordState.find(word => word.length === 5);
+  // console.log(solutionFind);
+  let len = 5;
   const [turnValue, setCurrentTurn] = useState(0);
 
   const [guessState, setGuesses] = useState({
@@ -16,20 +19,10 @@ function EasyMode() {
     1: '',
     2: '',
     3: '',
-    4: '',
-    5: '',
+    4: ''
   })
 
-  const [colorState , setColor] = useState('danger')
-
-  // const [guessState, setGuesses] = useState({
-  //   0: {guess: '' , color: colorState},
-  //   1: {guess: '' , color: colorState},
-  //   2: {guess: '' , color: colorState},
-  //   3: {guess: '' , color: colorState},
-  //   4: {guess: '' , color: colorState},
-  //   5: {guess: '' , color: colorState},
-  // })
+ 
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp)
@@ -37,6 +30,7 @@ function EasyMode() {
     return () => window.removeEventListener('keyup', handleKeyUp)
   }, [guessState])
 
+  // const [colorState , setColor] = useState('white');
 
   const handleKeyUp = ({ key }) => {
     if (/^[A-Za-z]$/.test(key)) {
@@ -55,13 +49,43 @@ function EasyMode() {
     }
   }
 
+  let correctLetter = 'f';
+  let correctIndex = 2;
+  let background = 'blue'
+
+  console.log(guessState)
+
   return (
     <div className='container'>
+        <div className="row align-items-start m-5 display-5 text-center" >
+        <Input word={guessState[0]}/>
+        <h1>Space</h1>
+        <Input word={guessState[1]}></Input>
+        <h1>Space</h1>
+        
+        <Input word={guessState[2]}></Input>
+        <h1>Space</h1>
 
-      {/* <Button onclick ={handleColorChange}>Change Color</Button> */}
+        <Input word={guessState[3]}></Input>
+        <h1>Space</h1>
 
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div id = '00' className="col border border-dark" style={{ height: '3.5rem' }}>
+        <Input word={guessState[4]}></Input>
+        <h1>Space</h1>
+
+
+
+        </div>
+      
+
+      {/* <div className="row align-items-start m-5 display-5 text-center">
+        {guessState[turnValue].split('').map((letter, i) =>{
+          return(
+            <div className="col border border-dark"  key={letter}style={{ height: '3.5rem', backgroundColor: letter===correctLetter && i===correctIndex? 'green' : letter===correctLetter?  'yellow' : 'grey'}}>
+              {letter}
+            </div>
+          )
+        })}
+        {/* <div id = '00' className="col border border-dark"  style={{ height: '3.5rem'}}>
           {guessState[0][0]}
         </div>
         <div className="col border border-dark" style={{ height: '3.5rem' }}>
@@ -75,81 +99,9 @@ function EasyMode() {
         </div>
         <div className="col border border-dark" style={{ height: '3.5rem' }}>
           {guessState[0][4]}
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[1][0]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[1][1]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[1][2]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[1][3]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[1][4]}
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[2][0]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[2][1]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[2][2]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[2][3]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[2][4]}
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[3][0]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[3][1]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[3][2]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[3][3]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[3][4]}
-        </div>
-      </div>
-
-      <div className="row align-items-start m-5 display-5 text-center">
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[4][0]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[4][1]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[4][2]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[4][3]}
-        </div>
-        <div className="col border border-dark" style={{ height: '3.5rem' }}>
-          {guessState[4][4]}
-        </div>
-      </div>
-
+        </div> */}
+      
+  
     </div>
   )
 }

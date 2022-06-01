@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Header";
 import NavBarComp from "./NavBarComp";
 import EasyMode from "./EasyMode";
+import Rows from './Rows'
 import About from "./About";
 import WordofTheDay from "./WordofTheDay";
 
@@ -17,7 +18,7 @@ function App() {
       <NavBarComp />
       <Switch>
         <Route exact path='/'>
-          <EasyMode />
+          <EasyMode></EasyMode>
         </Route>
         <Route exact path="/about">
           <About />
