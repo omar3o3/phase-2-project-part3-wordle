@@ -14,12 +14,12 @@ function useGameMode({ filteredSolution }) {
     const colorGuessValues = () =>{
         const solutionArray = [...filteredSolution];
         const formattedGuess = [...currentGuess].map(letter => {
-            return {key: letter , color: 'grey'}
+            return {key: letter , color: '#D5D2D2'}
         })
 
         formattedGuess.forEach((letter , i) => {
             if (letter.key === solutionArray[i]){
-                formattedGuess[i].color = 'green';
+                formattedGuess[i].color = '#75EF7D';
                 solutionArray[i] = null;
             }
         })
@@ -35,16 +35,18 @@ function useGameMode({ filteredSolution }) {
 
     const addGuessValues = (guessObject) =>{
 
+        if (currentGuess === filteredSolution){
+            setGameWon(true)
+        }
+
         setOldGuesses(prev => {
             let latestGuesses = [...prev];
             latestGuesses[turnValue] = guessObject;
             return latestGuesses
         })
 
-        if (currentGuess === filteredSolution){
-            setGameWon(true)
-        }
         setCurrentTurn(prev => prev + 1)
+        setCurrentGuess('')
     }
 
     const handleKeyUp = ({ key }) => {
