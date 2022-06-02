@@ -34,7 +34,12 @@ function useGameMode({ filteredSolution }) {
     }
 
     const addGuessValues = (guessObject) =>{
-        setOldGuesses(prev => [...prev , oldGuesses[turnValue] = guessObject])
+
+        setOldGuesses(prev => {
+            let latestGuesses = [...prev];
+            latestGuesses[turnValue] = guessObject;
+            return latestGuesses
+        })
 
         if (currentGuess === filteredSolution){
             setGameWon(true)

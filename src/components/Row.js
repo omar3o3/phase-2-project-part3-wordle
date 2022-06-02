@@ -1,26 +1,28 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-function Row({formatGuess}) {
+function Row({ oldGuesses }) {
 
-    // cons
-
-    // const breakDownGuess = (string) =>{
-    //     (string.map(letter =>{
-    //       return {key: letter , color: 'white'}
-    //     }))
-    //   }
-
-    let breakDown = formatGuess.map(letter => {
-        return {key: letter , color: 'white'}
+    // console.log(oldGuesses)
+    if (oldGuesses){
+    oldGuesses.map((word , i) => {
+        return (
+            <Card style={{ width: '8rem', height: '8rem' }} key = {i}>
+                <Card.Body>
+                    <Card.Text>
+                        {word.key}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        )
     })
+}
 
     return (
         <div className='d-flex justify-content-center'>
             <Card style={{ width: '8rem', height: '8rem' }}>
                 <Card.Body>
                     <Card.Text>
-                        {breakDown}
                     </Card.Text>
                 </Card.Body>
             </Card>
@@ -29,7 +31,3 @@ function Row({formatGuess}) {
 }
 
 export default Row
-
-// {formatGuess.map(letter => {
-//     return {key: letter , color: 'white'}
-// })}

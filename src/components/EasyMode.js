@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useGameMode from './useGameMode';
+import Grid from './Grid'
 
 function EasyMode({filteredSolution}) {
 
-  // let randomWords = require('random-words');
-  // let solutionList = randomWords({exactly: 25, maxLength: 7})
-  // let filteredSolution = solutionList.find(word => word.length === 5)
+  const {handleKeyUp , currentGuess , oldGuesses , turnValue , gameLost , gameWon} = useGameMode({filteredSolution})
 
-  const {handleKeyUp , currentGuess} = useGameMode({filteredSolution})
-
-  // console.log(currentGuess);
   console.log(filteredSolution);
 
   useEffect(()=>{
@@ -20,7 +16,10 @@ function EasyMode({filteredSolution}) {
 
   return (
     <div>
-      {currentGuess}
+      <Grid  currentGuess={currentGuess} oldGuesses={oldGuesses} turnValue={turnValue}/>
+      
+      {gameWon ? `Good job, you won in ${turnValue} tries` : null}
+      {gameLost ? `Better luck next time, the solution is ${filteredSolution}`: null}
     </div>
   )
 }
