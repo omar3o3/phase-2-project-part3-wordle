@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button'
 function WordofTheDay() {
 
   let randomWords = require('random-words');
-  // console.log(randomWords());
   const [wordState, setWordState] = useState(randomWords())
   const [definitonState , setDefinition] = useState('')
 
@@ -12,13 +11,9 @@ function WordofTheDay() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordState}`)
       .then(resp => resp.json())
       .then(data => breakDownDef(data))
-  }, [])
+  }, [refreshPage])
 
   const breakDownDef = (data) => {
-  // to get one of the meanings
-  // console.log(data[0].meanings[0].definitions[0].definition)
-  // console.log(data[0].meanings[1].definitions[0].definition)
-  // console.log(data[0].meanings[2].definitions[0].definition)
   console.log(data);
   setDefinition(data[0].meanings[0].definitions[0].definition)
   }

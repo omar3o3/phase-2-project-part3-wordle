@@ -11,13 +11,19 @@ import About from "./About";
 import WordofTheDay from "./WordofTheDay";
 
 function App() {
+
+  let randomWords = require('random-words');
+  let solutionList = randomWords({exactly: 25, maxLength: 7})
+  let filteredSolution = solutionList.find(word => word.length === 5)
+
+
   return (
     <>
       <Header />
       <NavBarComp />
       <Switch>
         <Route exact path='/'>
-          <EasyMode />
+          <EasyMode filteredSolution = {filteredSolution} />
         </Route>
         <Route exact path="/about">
           <About />
