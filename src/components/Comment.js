@@ -7,15 +7,14 @@ import Col from 'react-bootstrap/Col'
 
 function Comment({ comments }) {
 
-    // const { name, comment } = comments
     const commentsArray = [comments]
 
     if (comments) {
         return (
             <Container fluid>
                 {commentsArray.map(comment => (
-                    <Row className='"justify-content-center"'>
-                        <Col key={comment.id}>
+                    <Row className="justify-content-center" key={comment.id}>
+                        <Col>
                             <CardGroup>
                                 <Card>
                                     <Card.Body>

@@ -2,7 +2,7 @@
   "feedback": [
     {
       "id": 1,
-      "likes": 303,
+      "likes": 304,
       "dislikes": 1
     }
   ],
@@ -16,6 +16,16 @@
       "name": "Omar",
       "comment": "its cool",
       "id": 4
+    },
+    {
+      "name": "Not Omar",
+      "comment": "its super cool",
+      "id": 5
+    },
+    {
+      "name": "Still not Omar",
+      "comment": "its not that cool",
+      "id": 6
     }
   ]
 }
