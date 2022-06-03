@@ -35,7 +35,7 @@ function EasyMode({ filteredSolution }) {
         {gameWon ? (<Alert variant='success' className='text-center fs-1'>You won! It took you {turnValue === 1 ? '1 try.' : `${turnValue} tries.`}</Alert>) : null}
       </div>
       <div>
-        {gameLost ? <Alert variant='danger' className='text-center fs-1'>Better luck next time, the solution is {filteredSolution} </Alert>: null}
+        {gameLost ? <Alert variant='danger' className='text-center fs-1'>Better luck next time, the solution is: <span class="fw-bold fs-1">{filteredSolution}</span> </Alert>: null}
       </div>
       <div className='text-center my-3'>
         <Button onClick={() => setShowHint(!showHint)} variant="outline-dark btn-lg">Need a hint? Get the definition</Button>

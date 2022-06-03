@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Comment from './Comment';
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
 
 function Liker() {
   const [likes, setLikes] = useState(0);
@@ -88,7 +90,8 @@ function Liker() {
     setToggle(!toggle);
   }
 
-  const renderComments = commentsArr.map((comment) => <Comment key={comment.id} name={comment.name} comment={comment.comment}/>);
+  // const renderComments = commentsArr.map((comment) => <Comment key={comment.id} name={comment.name} comment={comment.comment}/>);
+  const renderComments = commentsArr.map((comments) => <Comment key={comments.id} comments={comments}/>);
 
   return (
     <div className='text-center'>
