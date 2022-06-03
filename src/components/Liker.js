@@ -90,7 +90,6 @@ function Liker() {
     setToggle(!toggle);
   }
 
-  // const renderComments = commentsArr.map((comment) => <Comment key={comment.id} name={comment.name} comment={comment.comment}/>);
   const renderComments = commentsArr.map((comments) => <Comment key={comments.id} comments={comments}/>);
 
   return (

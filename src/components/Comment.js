@@ -31,11 +31,8 @@ function Comment({ comments }) {
 
     return (
         <div>
-
         </div>
     )
 }
 
 export default Comment;
-
-//<div className='d-flex justify-content-center text-center' style={{width : "auto" , height: 'auto'}}>
