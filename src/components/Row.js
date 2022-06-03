@@ -5,14 +5,12 @@ function Row({ word, currentGuess }) {
 
     if (word) {
         return (
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center text-center'>
                 {word.map((letter, i) => (
-                    <Card style={{ width: '8rem', height: '8rem', backgroundColor: letter.color }} key={i} className='display-5'>
-                        <Card.Body>
+                    <Card style={{ width: '4.5rem', height: '4.5rem', backgroundColor: letter.color }} key={i} className='display-5'>
                             <Card.Text>
                                 {letter.key}
                             </Card.Text>
-                        </Card.Body>
                     </Card>
                 ))}
             </div>
@@ -22,24 +20,20 @@ function Row({ word, currentGuess }) {
     if (currentGuess) {
         let splitGuess = currentGuess.split('');
         return (
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center text-center'>
                 {splitGuess.map((letter, i) => (
-                    <Card style={{ width: '8rem', height: '8rem' }} key={i} className='display-5'>
-                        <Card.Body>
+                    <Card style={{ width: '4.5rem', height: '4.5rem' }} key={i} className='display-5'>
                             <Card.Text>
                                 {letter}
                             </Card.Text>
-                        </Card.Body>
                     </Card>
                 ))
                 }
                 {[...Array(5 - splitGuess.length)].map((_, i) => {
                     return (
-                        <Card style={{ width: '8rem', height: '8rem' }} key={i}>
-                            <Card.Body>
+                        <Card style={{ width: '4.5rem', height: '4.5rem' }} key={i}>
                                 <Card.Text>
                                 </Card.Text>
-                            </Card.Body>
                         </Card>)
                 })}
             </div>
@@ -47,36 +41,26 @@ function Row({ word, currentGuess }) {
     }
 
     return (
-        <div className='d-flex justify-content-center'>
-            <Card style={{ width: '8rem', height: '8rem' }}>
-                <Card.Body>
+        <div className='d-flex justify-content-center text-center'>
+            <Card style={{ width: '4.5rem', height: '4.5rem' }}>
                     <Card.Text>
                     </Card.Text>
-                </Card.Body>
             </Card>
-            <Card style={{ width: '8rem', height: '8rem' }}>
-                <Card.Body>
+            <Card style={{ width: '4.5rem', height: '4.5rem' }}>
                     <Card.Text>
                     </Card.Text>
-                </Card.Body>
             </Card>
-            <Card style={{ width: '8rem', height: '8rem' }}>
-                <Card.Body>
+            <Card style={{ width: '4.5rem', height: '4.5rem' }}>
                     <Card.Text>
                     </Card.Text>
-                </Card.Body>
             </Card>
-            <Card style={{ width: '8rem', height: '8rem' }}>
-                <Card.Body>
+            <Card style={{ width: '4.5rem', height: '4.5rem' }}>
                     <Card.Text>
                     </Card.Text>
-                </Card.Body>
             </Card>
-            <Card style={{ width: '8rem', height: '8rem' }}>
-                <Card.Body>
+            <Card style={{ width: '4.5rem', height: '4.5rem' }}>
                     <Card.Text>
                     </Card.Text>
-                </Card.Body>
             </Card>
         </div>
 

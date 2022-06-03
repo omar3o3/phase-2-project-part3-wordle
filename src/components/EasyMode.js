@@ -6,8 +6,6 @@ function EasyMode({ filteredSolution }) {
 
   const { handleKeyUp, currentGuess, oldGuesses, turnValue, gameLost, gameWon } = useGameMode({ filteredSolution })
 
-  console.log(filteredSolution);
-
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
 
@@ -15,13 +13,13 @@ function EasyMode({ filteredSolution }) {
   }, [currentGuess, handleKeyUp])
 
   return (
-    <div>
-      <div className='justify-text-center display-2'>
-        {gameWon ? `Good job, you won` : null}
+    <div className='my-5'>
+      <div className='text-center display-4 mb-2'>
+        {gameWon ? (`You won! It took you ${turnValue === 1 ? '1 try.' : `${turnValue} tries.`}`) : null}
       </div>
-      <div className='justify-content-center display-2'></div>
-        {gameLost ? `Better luck next time, the solution is ${filteredSolution}` : null}
-      <div></div>
+      <div className='text-center display-4 mb-2'>
+      {gameLost ? `Better luck next time, the solution is ${filteredSolution}` : null}
+      </div>
       <Grid currentGuess={currentGuess} oldGuesses={oldGuesses} turnValue={turnValue} />
     </div>
   )

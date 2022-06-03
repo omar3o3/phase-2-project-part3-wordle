@@ -13,12 +13,13 @@ import WordofTheDay from "./WordofTheDay";
 function App() {
 
   let randomWords = require('random-words');
-  let solutionList = randomWords({exactly: 25, maxLength: 7})
-  let filteredSolution = solutionList.find(word => word.length === 5)
+  let solutionList = randomWords({exactly: 25, maxLength: 7});
+  let filteredSolution = solutionList.find(word => word.length === 5);
+  console.log(filteredSolution);
 
 
   return (
-    <>
+    <div>
       <Header />
       <NavBarComp />
       <Switch>
@@ -32,7 +33,7 @@ function App() {
           <WordofTheDay />
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 

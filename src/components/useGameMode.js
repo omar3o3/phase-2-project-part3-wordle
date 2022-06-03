@@ -47,12 +47,21 @@ function useGameMode({ filteredSolution }) {
 
         setCurrentTurn(prev => prev + 1)
         setCurrentGuess('')
+        // handleLoss();
+
     }
+
+    useEffect(()=>{
+        if (turnValue === 6 && gameWon === false){
+            setGameLost(true)
+        }
+    } , [turnValue , gameWon])
 
     const handleKeyUp = ({ key }) => {
 
         if (key === 'Enter' && currentGuess.length === 5) {
             if (turnValue > 5) {
+                // setGameLost(true);
                 return console.log('no more turns available');
             }
             else{

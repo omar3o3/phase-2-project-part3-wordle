@@ -7,8 +7,8 @@ function NavBarComp() {
   return (
     <div >
       <Navbar bg='light' sticky="top">
-        <Container className='justify-content-center'>
-          <Navbar.Brand >NavBar:</Navbar.Brand>
+        <Container className='justify-content-center fs-3'>
+          <Navbar.Brand className='fs-3'>NavBar:</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href='/'>Game</Nav.Link>
             <Nav.Link href='/about'>About</Nav.Link>
