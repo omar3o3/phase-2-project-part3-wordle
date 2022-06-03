@@ -26,36 +26,27 @@ function Liker() {
       name: newName,
       comment: newComment
     };
-    //render new state, appends comment on page
     setCommentsArr([...commentsArr, addComment]);
-    //reset input fields
     setNewName('');
     setNewComment('');
   }
 
-  // const hidden = {
-  //   visibility: 'hidden',
-  // }
-
   function handleToggle() {
     setToggle(!toggle);
-    // setCommentsArr([]);
   }
 
   const renderComments =  commentsArr.map((comment) => <Comment key={uuid()} commentObj={comment}/>);
 
   return (
     <div className='text-center'>
-      <p className='display-6'>What did you think of the game?</p>
-      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setLikes(likes+1)}>👍&nbsp;{likes}</Button>
+      <p className='fs-3'>What did you think of the game?</p>
+      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={()=>setLikes(likes+1)}>👍&nbsp;{likes}</Button>
       &nbsp;&nbsp;&nbsp;
-      <Button className='display-6 lead text-center' variant="outline-primary" onClick={()=>setDislikes(dislikes+1)}>👎&nbsp;{dislikes}</Button>
-      <br /><br />
-      <br /><br />
-      <h3 className='text-center'>Comments</h3>
+      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={()=>setDislikes(dislikes+1)}>👎&nbsp;{dislikes}</Button>
+      <h3 className='text-center'>Leave a Comment</h3>
       <form className='lead text-center' onSubmit={handleSubmit}>
         {/* <label>What did you think of the game?</label> */}
-        <label>Name</label>
+        <label className='fs-4'>Name</label>
         <br />
         <input type="text" name="name" value={newName} placeholder="Enter name..." onChange={handleNewName}></input>
         <br />
@@ -66,7 +57,7 @@ function Liker() {
         <Button type="submit" value="Submit">Submit</Button>
       </form>
       <hr/>
-      <Button onClick={handleToggle} variant="outline-secondary">{toggle ? "Hide Comments" : "Show Comments"}</Button>
+      <Button onClick={handleToggle} variant="outline-secondary" className='mb-3'>{toggle ? "Hide Comments" : "Show Comments"}</Button>
       {toggle ? <div>{renderComments}</div> : null}
     </div>
   )
