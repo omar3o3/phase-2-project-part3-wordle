@@ -12,7 +12,7 @@ function NavBarComp() {
           <Nav className="me-auto">
             <Nav.Link href='/'>Game</Nav.Link>
             <Nav.Link href='/about'>About</Nav.Link>
-            <Nav.Link href='/wotd'>Learn a New Word</Nav.Link>
+            <Nav.Link href='/wotd'>Learn-A-New-Word</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
