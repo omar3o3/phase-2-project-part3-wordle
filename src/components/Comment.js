@@ -1,10 +1,9 @@
 import React from 'react';
 
-function Comment({ commentObj }) {
-    const { name, comment } = commentObj;
+function Comment({ name, comment }) {
 
     return (
-        <div>
+        <div className="m-5 shadow border">
             <p className='lead'>"{comment}" -{name}</p>
         </div>
     )
