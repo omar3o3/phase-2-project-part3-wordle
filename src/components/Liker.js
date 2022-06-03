@@ -11,14 +11,14 @@ function Liker() {
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4000/feedback/1')
+    fetch('http://localhost:3003/feedback/1')
       .then(r => r.json())
       .then((data) => {
         setLikes(data.likes);
         setDislikes(data.dislikes);
       })
 
-    fetch('http://localhost:4000/comments')
+    fetch('http://localhost:3003/comments')
       .then(r => r.json())
       .then((data) => setCommentsArr(data))
   }, [])
@@ -26,7 +26,7 @@ function Liker() {
   function handleClickLike() {
     setLikes(likes + 1)
 
-    fetch('http://localhost:4000/feedback/1', {
+    fetch('http://localhost:3003/feedback/1', {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Liker() {
 
   function handleClickDislike() {
     setDislikes(dislikes + 1);
-    fetch('http://localhost:4000/feedback/1', {
+    fetch('http://localhost:3003/feedback/1', {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Liker() {
       comment: newComment
     };
 
-    fetch('http://localhost:4000/comments', {
+    fetch('http://localhost:3003/comments', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
