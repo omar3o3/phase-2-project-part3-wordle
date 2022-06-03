@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function useGameMode({ filteredSolution }) {
+function useGameMode({ filteredSolution, handleInvalid }) {
 
     const [currentGuess, setCurrentGuess] = useState('');
     const [oldGuesses, setOldGuesses] = useState([...Array(6)]);
@@ -10,22 +10,42 @@ function useGameMode({ filteredSolution }) {
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
 
+    const [wordChecker, setWordChecker] = useState('');
 
-    const colorGuessValues = () =>{
+    const isValid = () => {
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${currentGuess}`)
+            .then(resp => resp.json())
+            .then(data => setWordChecker(data[0].meanings[0].definitions[0].definition))
+            .then(() => handleIsValid())
+            .catch(error => checkIfIsValid(error))
+    }
+
+    const checkIfIsValid = (error) =>{
+        if (error) {
+            let showError = handleInvalid()
+        }
+    }
+
+    const handleIsValid = () =>{
+        let colorGuessValue = colorGuessValues();
+        addGuessValues(colorGuessValue)
+    }
+
+    const colorGuessValues = () => {
         const solutionArray = [...filteredSolution];
         const formattedGuess = [...currentGuess].map(letter => {
-            return {key: letter , color: '#D5D2D2'}
+            return { key: letter, color: '#D5D2D2' }
         })
 
-        formattedGuess.forEach((letter , i) => {
-            if (letter.key === solutionArray[i]){
+        formattedGuess.forEach((letter, i) => {
+            if (letter.key === solutionArray[i]) {
                 formattedGuess[i].color = '#75EF7D';
                 solutionArray[i] = null;
             }
         })
 
-        formattedGuess.forEach((letter , i)=>{
-            if(solutionArray.includes(letter.key) && letter.color !== 'green'){
+        formattedGuess.forEach((letter, i) => {
+            if (solutionArray.includes(letter.key) && letter.color !== 'green') {
                 formattedGuess[i].color = 'yellow';
                 solutionArray[solutionArray.indexOf(letter.key)] = null;
             }
@@ -33,9 +53,9 @@ function useGameMode({ filteredSolution }) {
         return formattedGuess
     }
 
-    const addGuessValues = (guessObject) =>{
+    const addGuessValues = (guessObject) => {
 
-        if (currentGuess === filteredSolution){
+        if (currentGuess === filteredSolution) {
             setGameWon(true)
         }
 
@@ -47,26 +67,22 @@ function useGameMode({ filteredSolution }) {
 
         setCurrentTurn(prev => prev + 1)
         setCurrentGuess('')
-        // handleLoss();
-
     }
 
-    useEffect(()=>{
-        if (turnValue === 6 && gameWon === false){
+    useEffect(() => {
+        if (turnValue === 6 && gameWon === false) {
             setGameLost(true)
         }
-    } , [turnValue , gameWon])
+    }, [turnValue, gameWon])
 
     const handleKeyUp = ({ key }) => {
 
         if (key === 'Enter' && currentGuess.length === 5) {
             if (turnValue > 5) {
-                // setGameLost(true);
                 return console.log('no more turns available');
             }
-            else{
-                let colorGuessValue = colorGuessValues();
-                addGuessValues(colorGuessValue)
+            else {
+                let runWordChecker = isValid();
             }
         }
 
@@ -81,7 +97,7 @@ function useGameMode({ filteredSolution }) {
         }
     }
 
-    return {handleKeyUp , currentGuess , oldGuesses , turnValue , gameLost , gameWon}
+    return { handleKeyUp, currentGuess, oldGuesses, turnValue, gameLost, gameWon }
 }
 
 export default useGameMode

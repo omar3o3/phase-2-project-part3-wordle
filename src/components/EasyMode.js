@@ -8,7 +8,13 @@ function EasyMode({ filteredSolution }) {
 
   const [solutionHint, setSolutionHint] = useState('');
   const [showHint, setShowHint] = useState(false);
-  const { handleKeyUp, currentGuess, oldGuesses, turnValue, gameLost, gameWon } = useGameMode({ filteredSolution });
+  const [showInvalidState, setShowInvalid] = useState(false);
+
+  const handleInvalid = () => {
+    setShowInvalid(prev => !prev)
+  }
+
+  const { handleKeyUp, currentGuess, oldGuesses, turnValue, gameLost, gameWon } = useGameMode({ filteredSolution, handleInvalid });
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
@@ -26,22 +32,83 @@ function EasyMode({ filteredSolution }) {
     window.location.reload(false);
   }
 
+
+
   return (
     <div className='my-5 justify-content-center'>
+
       <div className='text-center'>
-        {gameWon || gameLost ? <Button className='btn-lg my-2' variant="outline-primary" onClick={refreshPage}>Play Again!</Button> : null}
+        {gameWon || gameLost ?
+          <Button
+            className='btn-lg my-2'
+            variant="outline-primary"
+            onClick={refreshPage}>
+            Play Again!
+          </Button>
+          :
+          null}
       </div>
+
       <div>
-        {gameWon ? (<Alert variant='success' className='text-center fs-1'>You won! It took you {turnValue === 1 ? '1 try.' : `${turnValue} tries.`}</Alert>) : null}
+        {gameWon ?
+          <Alert
+            variant='success'
+            className='text-center fs-1'>
+            You won! It took you {turnValue === 1 ? '1 try.' : `${turnValue} tries.`}
+          </Alert>
+          :
+          null}
       </div>
+
       <div>
-        {gameLost ? <Alert variant='danger' className='text-center fs-1'>Better luck next time, the solution is: <span class="fw-bold fs-1">{filteredSolution}</span> </Alert>: null}
+        {gameLost ?
+          <Alert
+            variant='danger'
+            className='text-center fs-1'>
+            Better luck next time, the solution is:
+            <span
+              className="fw-bold fs-1 mx-2">
+              {filteredSolution}
+            </span>
+          </Alert>
+          :
+          null}
       </div>
+
+      <div>
+        {showInvalidState ?
+          <Alert variant='danger'
+            className='text-center fs-1'
+            onClose={() => setShowInvalid((prev) => !prev)}
+            dismissible>
+            Sorry,
+            <span
+              className="fw-bold fs-1 mx-2">
+              {currentGuess}
+            </span>
+            is not a valid word
+          </Alert>
+          :
+          null}
+      </div>
+
       <div className='text-center my-3'>
-        <Button onClick={() => setShowHint(!showHint)} variant="outline-dark btn-lg">Need a hint? Get the definition</Button>
-        {showHint ? <p className='my-2 fs-3 fst-italic'>{solutionHint}</p> : null}
+        <Button
+          onClick={() => setShowHint(!showHint)}
+          variant="outline-dark btn-lg">
+          Need a hint? Get the definition
+        </Button>
+        {showHint ?
+          <p
+            className='my-2 fs-3 fst-italic mx-2'>
+            {solutionHint}
+          </p>
+          :
+          null}
       </div>
+
       <Grid currentGuess={currentGuess} oldGuesses={oldGuesses} turnValue={turnValue} />
+
     </div>
   )
 }
