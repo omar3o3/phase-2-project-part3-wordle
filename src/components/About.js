@@ -1,5 +1,6 @@
 import React from 'react';
 import Liker from './Liker';
+//json-server --watch db.json --port 3003
 
 
 function About() {

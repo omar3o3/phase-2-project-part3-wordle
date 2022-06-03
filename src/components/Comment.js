@@ -19,8 +19,8 @@ function Comment({ comments }) {
                             <CardGroup>
                                 <Card>
                                     <Card.Body>
-                                        <Card.Title>{comment.name}</Card.Title>
-                                        <Card.Text>
+                                        <Card.Title className='lead fs-3 fw-bold'>{comment.name}</Card.Title>
+                                        <Card.Text className='lead fs-4'>
                                             {comment.comment}
                                         </Card.Text>
                                     </Card.Body>

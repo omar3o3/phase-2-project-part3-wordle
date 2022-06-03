@@ -2,8 +2,8 @@
   "feedback": [
     {
       "id": 1,
-      "likes": 14,
-      "dislikes": 3
+      "likes": 303,
+      "dislikes": 1
     }
   ],
   "comments": [
@@ -13,14 +13,9 @@
       "comment": "awesome game! I feel smarter =)"
     },
     {
-      "name": "hi",
-      "comment": "hello",
-      "id": 2
-    },
-    {
-      "name": "hi",
-      "comment": "aksdnadsmv",
-      "id": 3
+      "name": "Omar",
+      "comment": "its cool",
+      "id": 4
     }
   ]
 }

@@ -96,9 +96,9 @@ function Liker() {
   return (
     <div className='text-center'>
       <p className='fs-3'>What did you think of the game?</p>
-      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={handleClickLike}>👍&nbsp;{likes}</Button>
+      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={handleClickLike}>👍&nbsp;&nbsp;{likes}</Button>
       &nbsp;&nbsp;&nbsp;
-      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={handleClickDislike}>👎&nbsp;{dislikes}</Button>
+      <Button className='display-6 lead text-center mb-3' variant="outline-primary" onClick={handleClickDislike}>👎&nbsp;&nbsp;{dislikes}</Button>
       <h3 className='text-center'>Leave a Comment</h3>
       <form className='lead text-center' onSubmit={handleSubmit}>
         <label className='fs-4'>Name</label>
