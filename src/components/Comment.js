@@ -14,9 +14,9 @@ function Comment({ comments }) {
             <Container fluid>
                 {commentsArray.map(comment => (
                     <Row className="justify-content-center" key={comment.id}>
-                        <Col>
-                            <CardGroup>
-                                <Card>
+                        <Col >
+                            <CardGroup >
+                                <Card style={{flex: 1}}>
                                     <Card.Body>
                                         <Card.Title className='lead fs-3 fw-bold'>{comment.name}</Card.Title>
                                         <Card.Text className='lead fs-4'>
