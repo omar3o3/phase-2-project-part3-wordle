@@ -3,6 +3,9 @@ import Card from 'react-bootstrap/Card';
 
 function Row({ word, currentGuess }) {
 
+    console.log(word);
+    // console.log(currentGuess);
+
     if (word) {
         return (
             <div className='d-flex justify-content-center text-center'>

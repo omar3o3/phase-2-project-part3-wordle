@@ -15,7 +15,8 @@ function App() {
 
   let randomWords = require('random-words');
   let solutionList = randomWords({exactly: 25, maxLength: 7});
-  let filteredSolution = solutionList.find(word => word.length === 5);
+  // let filteredSolution = solutionList.find(word => word.length === 5);
+  let filteredSolution = 'pools'
   console.log(filteredSolution);
 
 
