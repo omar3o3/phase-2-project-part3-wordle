@@ -23,7 +23,7 @@ function WordofTheDay() {
   }
 
 return (
-  <div className='text-center'>
+  <div className='text-center' style={{marginBottom: "20%"}}>
     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
       <div style={{flex: 1, height: '1px', backgroundColor: 'black'}} />
         <div>
