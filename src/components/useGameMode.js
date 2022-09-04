@@ -45,9 +45,12 @@ function useGameMode({ filteredSolution, handleInvalid }) {
         })
 
         formattedGuess.forEach((letter, i) => {
-            if (solutionArray.includes(letter.key) && letter.color !== 'green') {
-                formattedGuess[i].color = 'yellow';
-                solutionArray[solutionArray.indexOf(letter.key)] = null;
+            if (
+              solutionArray.includes(letter.key) &&
+              letter.color !== "#75EF7D"
+            ) {
+              formattedGuess[i].color = "yellow";
+              solutionArray[solutionArray.indexOf(letter.key)] = null;
             }
         })
         return formattedGuess
